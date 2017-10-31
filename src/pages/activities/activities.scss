@@ -12,6 +12,19 @@ page-activities {
     display: block;
 }
 
+.card{
+    background-color: #6dc76d!important;
+    align-items: center;
+    background-color: white;
+    display: block;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.55);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.55);
+    color: #666;
+    padding: 10px 0px 0px 6px;
+}
+
 .alignPosition {
     position: relative;
     top: 50%;

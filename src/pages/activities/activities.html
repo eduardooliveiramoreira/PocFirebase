@@ -21,14 +21,15 @@
           </ion-col>
         </ion-row>
         </ion-card>
-    <ion-card *ngFor="let palestra of listActiviesDaySelected" >
+    <ion-card *ngFor="let palestra of listActiviesDaySelected" class="card" >
       <ion-row>
         <ion-col class="alignPosition">
          {{palestra.horario}}
         </ion-col>
         <ion-col text-center>
-            <ion-row class="alignCenter">   
-                <button ion-button round  disabled> {{palestra.tipo_atividade}}</button>   
+            <ion-row class="alignCenter">  
+                    <button ion-button round color="light"> {{palestra.tipo_atividade}}</button> 
+      
             </ion-row>
             <ion-row class="alignCenter">  {{palestra.tema}}  </ion-row>
             <ion-row class="alignCenter"> {{palestra.apresentador}}    </ion-row>
