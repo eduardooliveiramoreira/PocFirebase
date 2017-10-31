@@ -1,0 +1,15 @@
+<ion-header>
+    <div>
+    <img class="imgCenter" src="../../assets/imgs/cabecalho_2017.png">
+  </div>
+</ion-header>
+
+<ion-content padding  text-center>
+    <button ion-button round>Programação das atividades</button>
+ 
+    <ion-card *ngFor="let day of listDays" class="cardDays">
+        <ion-card-header (click)="goToActivities(day)" class="header">
+        {{day}}
+      </ion-card-header>
+      </ion-card>
+</ion-content>
