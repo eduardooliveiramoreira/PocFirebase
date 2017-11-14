@@ -1,26 +1,92 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+## POC para demonstrar um aplicativo Hibrido com GoogleSheets e Firebase
 
-## How to use this template
+Aplicativo híbrido, utilizando Angular (TypeScript) e Ionic para o desenvolvimento.
+Realtime DataBase do Firebase atualizado a partir do Google Sheets (Planilha) onde é possível a partir de uma planilha atualizar informações no App, utilizamos como exemplo o IFCIÊNCIA (facebook.com/ifciencia/) para demonstrar uma possível utilização desta tecnologia.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+### Firebase Realtime Database 
+O Firebase Realtime Database é um banco de dados NoSQL hospedado na nuvem. Com ele, você armazena e sincroniza dados entre os seus usuários em tempo real.
+O Realtime Database acompanha os SDKs para Web e dispositivos móveis. Assim, você desenvolve apps sem precisar de servidores. 
 
-### With the Ionic CLI:
+### Link Planilha Google Docs com as informações apresentadas:
+https://docs.google.com/spreadsheets/d/1tlWQduS4zId5r-rC8WAe2cdY_SuIi_trCUu47i0qPE0/edit?usp=sharing
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
-```
+### Script Utilizado no GoogleSheets para a ligação com o Firebase:
 
-Then, to run it, cd into `myTabs` and run:
+function myFunction() {
+  var firebaseUrl = "---";
+  var secret = "---";
+  var base = FirebaseApp.getDatabaseByUrl(firebaseUrl,secret);  
+  var ss = SpreadsheetApp.openById("1tlWQduS4zId5r-rC8WAe2cdY_SuIi_trCUu47i0qPE0");
+  var sheets = ss.getSheets();    
+  
+for(var sheet = 0; sheet<sheets.length; sheet++){
+  var data = sheets[sheet].getDataRange().getValues();
+    var columnsName = sheets[sheet].getDataRange().getValues(); 
+  var dataToImport = [];      
+  for(var i = 1; i < data.length; i++) {
+    switch(sheet){ 
+      case 0:
+      dataToImport.push(readQuarta(data, i));
+      break;
+      case 1:
+      dataToImport.push(readQuinta(data, i));
+      break;   
+      case 2:
+      dataToImport.push(readSexta(data, i));
+      break;    
+      case 3:
+      dataToImport.push(readTemas(data, i));
+      break;  
+      default:
+      break;
+    }       
+  }        
+  base.setData(sheets[sheet].getName(), dataToImport);
+  }             
+}
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
+function readQuarta(data, i){
+   var dataTab = {
+      horario:data[i][0],
+      tipo_atividade:data[i][1],
+      tema:data[i][2],
+      apresentador:data[i][3],
+      organizador:data[i][4],
+      local:data[i][5]
+    };   
+  return dataTab;
+}
+function readQuinta(data, i){
+   var dataTab = {
+      horario:data[i][0],
+      tipo_atividade:data[i][1],
+      tema:data[i][2],
+      apresentador:data[i][3],
+      organizador:data[i][4],
+      local:data[i][5]
+    };   
+  return dataTab;
+}
+function readSexta(data, i){
+   var dataTab = {
+      horario:data[i][0],
+      tipo_atividade:data[i][1],
+      tema:data[i][2],
+      apresentador:data[i][3],
+      organizador:data[i][4],
+      local:data[i][5]
+    };   
+  return dataTab;
+}
+function readTemas(data, i){
+   var dataTab = {
+      title:data[i][0],
+      message:data[i][1]
+    };   
+  return dataTab;
+}
 
-Substitute ios for android if not on a Mac.
+
 
